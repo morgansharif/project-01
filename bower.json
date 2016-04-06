@@ -1,0 +1,20 @@
+{
+  "name": "project-01",
+  "description": "project01",
+  "main": "server.js",
+  "authors": [
+    "Morgan Sharif"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^2.2.3"
+  }
+}
