@@ -29,6 +29,7 @@ pre code {
     overflow-x: normal;
     overflow-y: normal;
     white-space: pre;
+    text-align: left;
 }
 
 

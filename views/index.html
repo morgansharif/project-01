@@ -41,30 +41,36 @@
 
     <!--     START REPO PAGE      -->
     <nav class="navbar navbar-inverse">
-      <h1>Your Snippet Repo</h1>
+      <h1>Snippet Repo</h1>
     </nav>
 
 
       <div class="container">
-        <div class="row">
+        <div id="snippet-target" class="row">
 
+          <!-- one snippet -->
+          <script id="snippet-template" type="text/x-handlebars-template">
           <div class="col-xs-12 col-sm-6 col-md-3">
           <div class="panel panel-default">
             <div class="panel-heading">
-              <h3 class="panel-title">Snippet Title</h3>
+              <h3 class="panel-title">{{title}}</h3>
             </div>
             <div class="panel-body">
               <pre class="pre-scrollable">
-                <code>//node server boilerplate\r\n//require express in our app\r\nvar express = require(\'express\');\r\n// generate a new express app and call it \'app\'\r\nvar app = express(),\r\n    db = require(\'./models\');\r\n\r\n// require body-parser\r\nvar bodyParser = require(\'body-parser\');\r\n\r\n// serve static files from public folder\r\napp.use(express.static(__dirname + \'/public\'));\r\n\r\n//body parser config\r\napp.use(bodyParser.urlencoded({extended: true}));\r\n\r\n// We\'ll serve jQuery and bootstrap from a local bower cache avoiding CDNs\r\n// We\'re placing these under /vendor to differentiate them from our own assets\r\napp.use(\'/vendor\', express.static(__dirname + \'/bower_components\'));\r\n\r\nvar controllers = require(\'./controllers\');\r\n  });</code>
+                <code>{{code}}</code>
               </pre>
-
-              </div>
               <p>
-                Snippet Description
+                {{desc}}
               </p>
             </div>
+            </div>
           </div>
-        </div>
+        </script>
+
+        </div><!-- end row / snippet target -->
+
+
+
 
 
 
@@ -82,7 +88,6 @@
 
 
 
-        </div> <!-- end row -->
       </div> <!-- end container -->
 
 
