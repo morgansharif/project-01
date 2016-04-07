@@ -41,7 +41,7 @@ $(function(){
 
 //   $.ajax({
 //   method: 'GET',
-//   url: '/api/albums',
+//   url: '/api/snippets',
 //   success: firstGet
 // });
 

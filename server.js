@@ -39,6 +39,9 @@ var controllers = require('./controllers');
  * JSON API Endpoints
  */
 
+ //look at api
+ app.get('/api', controllers.api.index);
+
 
 /**********
 * SERVER *
