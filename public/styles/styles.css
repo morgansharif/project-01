@@ -4,15 +4,17 @@
 .container{
   text-align: center;
   height: 100vh;
-}
-.jumbotron{
+  padding-top: 180px;
   color: white;
   text-shadow: 1px 1px 2px black;
-  padding-top: 180px;
+}
+.jumbotron{
+  padding: 0px 0px;
   background-color: black;
   background-image: url(http://aaronbartholomew.com/wp-content/uploads/2014/03/clean-code.jpg);
   background-position: center;
-  background-repeat: no-repeat;
+  background-attachment: fixed;
+  margin: auto;
 }
 
 .hidden{
