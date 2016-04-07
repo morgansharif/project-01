@@ -1,14 +1,14 @@
 /*   CSS STYLES   */
 
-/*full height Hero window*/
+/* hero window*/
 .container{
   text-align: center;
   height: 100vh;
-  padding-top: 180px;
-  color: white;
   text-shadow: 1px 1px 2px black;
 }
 .jumbotron{
+  padding-top: 180px;
+  color: white;
   padding: 0px 0px;
   background-color: black;
   background-image: url(http://aaronbartholomew.com/wp-content/uploads/2014/03/clean-code.jpg);
@@ -16,7 +16,7 @@
   background-attachment: fixed;
   margin: auto;
 }
-
+/* end hero window */
 .hidden{
   visibility: hidden;
   display: none;
@@ -24,4 +24,5 @@
 
 .header{
   height: 100px;
+  padding-left: 15px;
 }
