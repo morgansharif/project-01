@@ -52,9 +52,9 @@ $(function(){
 });//end document on ready
 
 //handle first get request
-function firstGet(json){
-  updateRepoName(newName);
-  snippets = repo.snippets;
+function firstGet(repo){
+  updateRepoName(repo.name);
+  snippetsList = repo.snippets;
   renderSnippets();
 }
 
