@@ -42,6 +42,38 @@ var controllers = require('./controllers');
  //look at api
  app.get('/api', controllers.api.index);
 
+// GET all snippets
+// app.get('/api/repos/:id/snippets',
+// req.params.id
+
+// POST new repo
+// app.post('api/repos'
+// req.body.name
+
+// PUT update repo name
+// app.put('/api/repos/:id'
+// req.params.id
+// req.body.name
+
+// POST new snippet
+// app.get('/api/repos/:id/snippets'
+// req.params.id
+// req.body (title/desc/code)
+
+// PUT existing snippet
+// app.put('api/repos/:repo_id/snippets/:snippet_id'
+// req.params.repo_id
+// req.params.snippet_id
+// req.body (title/desc/code)
+
+// DELETE existing repo
+// app.delete('api/repos/:id'
+// req.params.id
+
+// DELETE existing snippet
+// app.delete('api/repos/:repo_id/snippets/snippet_id'
+// req.params.id
+
 
 /**********
 * SERVER *
