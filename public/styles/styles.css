@@ -25,6 +25,13 @@ body{
   background-color: #2D2222;
 }
 
+pre code {
+    overflow-x: normal;
+    overflow-y: normal;
+    white-space: pre;
+}
+
+
 nav{
   padding-top: 10px;
   padding-left: 15px;

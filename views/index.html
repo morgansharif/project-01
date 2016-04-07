@@ -39,6 +39,7 @@
     </div>
     <!-- end jumbotron -->
 
+    <!--     START REPO PAGE      -->
     <nav class="navbar navbar-inverse">
       <h1>Your Snippet Repo</h1>
     </nav>
@@ -48,84 +49,36 @@
         <div class="row">
 
           <div class="col-xs-12 col-sm-6 col-md-3">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">Snippet Title</h3>
+            </div>
+            <div class="panel-body">
+              <pre class="pre-scrollable">
+                <code>//node server boilerplate\r\n//require express in our app\r\nvar express = require(\'express\');\r\n// generate a new express app and call it \'app\'\r\nvar app = express(),\r\n    db = require(\'./models\');\r\n\r\n// require body-parser\r\nvar bodyParser = require(\'body-parser\');\r\n\r\n// serve static files from public folder\r\napp.use(express.static(__dirname + \'/public\'));\r\n\r\n//body parser config\r\napp.use(bodyParser.urlencoded({extended: true}));\r\n\r\n// We\'ll serve jQuery and bootstrap from a local bower cache avoiding CDNs\r\n// We\'re placing these under /vendor to differentiate them from our own assets\r\napp.use(\'/vendor\', express.static(__dirname + \'/bower_components\'));\r\n\r\nvar controllers = require(\'./controllers\');\r\n  });</code>
+              </pre>
+
+              </div>
+              <p>
+                Snippet Description
+              </p>
+            </div>
+          </div>
+        </div>
+
+
+
+
+          <!-- <div class="col-xs-12 col-sm-6 col-md-3">
             <div class="thumbnail">
               <h4>Snippet Title</h4>
               <img src="http://placehold.it/500x250/EEE">
-              <div class="caption">
+              <div class="caption" >
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere, soluta, eligendi doloribus sunt minus amet sit debitis repellat. Consectetur, culpa itaque odio similique suscipit</p>
-                <a href="#" class="btn btn-default btn-xs pull-right" role="button"><i class="glyphicon glyphicon-edit"></i></a> <a href="#" class="btn btn-info btn-xs" role="button">Button</a> <a href="#" class="btn btn-default btn-xs" role="button">Button</a>
+                <a href="#" class="btn btn-default btn-xs pull-right" role="button"><i class="glyphicon glyphicon-edit"></i></a>
               </div>
             </div>
-          </div>
-
-          <div class="col-xs-12 col-sm-6 col-md-3">
-            <div class="thumbnail">
-              <img src="http://placehold.it/500x250/EEE">
-              <div class="caption">
-                <h4>Thumbnail label</h4>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere, soluta, eligendi doloribus sunt minus amet sit debitis repellat. Consectetur, culpa itaque odio similique suscipit</p>
-                <a href="#" class="btn btn-default btn-xs pull-right" role="button"><i class="glyphicon glyphicon-edit"></i></a> <a href="#" class="btn btn-info btn-xs" role="button">Button</a> <a href="#" class="btn btn-default btn-xs" role="button">Button</a>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-xs-12 col-sm-6 col-md-3">
-            <div class="thumbnail">
-              <img src="http://placehold.it/500x250/EEE">
-              <div class="caption">
-                <h4>Thumbnail label</h4>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere, soluta, eligendi doloribus sunt minus amet sit debitis repellat. Consectetur, culpa itaque odio similique suscipit</p>
-                <a href="#" class="btn btn-default btn-xs pull-right" role="button"><i class="glyphicon glyphicon-edit"></i></a> <a href="#" class="btn btn-info btn-xs" role="button">Button</a> <a href="#" class="btn btn-default btn-xs" role="button">Button</a>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-xs-12 col-sm-6 col-md-3">
-            <div class="thumbnail">
-              <img src="http://placehold.it/500x250/EEE">
-              <div class="caption">
-                <h4>Thumbnail label</h4>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere, soluta, eligendi doloribus sunt minus amet sit debitis repellat. Consectetur, culpa itaque odio similique suscipit</p>
-                <a href="#" class="btn btn-default btn-xs pull-right" role="button"><i class="glyphicon glyphicon-edit"></i></a> <a href="#" class="btn btn-info btn-xs" role="button">Button</a> <a href="#" class="btn btn-default btn-xs" role="button">Button</a>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-xs-12 col-sm-6 col-md-3">
-            <div class="thumbnail">
-              <div class="panel-heading">
-                <h3 class="panel-title">Repo Title</h3>
-              </div>
-              <img src="http://placehold.it/500x250/EEE">
-              <div class="caption">
-                <h4>Thumbnail label</h4>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere, soluta, eligendi doloribus sunt minus amet sit debitis repellat. Consectetur, culpa itaque odio similique suscipit</p>
-                <a href="#" class="btn btn-default btn-xs pull-right" role="button"><i class="glyphicon glyphicon-edit"></i></a> <a href="#" class="btn btn-info btn-xs" role="button">Button</a> <a href="#" class="btn btn-default btn-xs" role="button">Button</a>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-xs-12 col-sm-6 col-md-3">
-            <div class="thumbnail">
-              <img src="http://placehold.it/500x250/EEE">
-              <div class="caption">
-                <h4>Thumbnail label</h4>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere, soluta, eligendi doloribus sunt minus amet sit debitis repellat. Consectetur, culpa itaque odio similique suscipit</p>
-                <a href="#" class="btn btn-default btn-xs pull-right" role="button"><i class="glyphicon glyphicon-edit"></i></a> <a href="#" class="btn btn-info btn-xs" role="button">Button</a> <a href="#" class="btn btn-default btn-xs" role="button">Button</a>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-xs-12 col-sm-6 col-md-3">
-            <div class="thumbnail">
-              <img src="http://placehold.it/500x250/EEE">
-              <div class="caption">
-                <h4>Thumbnail label</h4>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere, soluta, eligendi doloribus sunt minus amet sit debitis repellat. Consectetur, culpa itaque odio similique suscipit</p>
-                <a href="#" class="btn btn-default btn-xs pull-right" role="button"><i class="glyphicon glyphicon-edit"></i></a> <a href="#" class="btn btn-info btn-xs" role="button">Button</a> <a href="#" class="btn btn-default btn-xs" role="button">Button</a>
-              </div>
-            </div>
-          </div>
+          </div> -->
 
 
 
