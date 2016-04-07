@@ -1,6 +1,6 @@
 
 //HARDCODED SEED DATA
-var repoName = "Snippet Repo"; //hard coded
+var repoName = "Morgan's Repo"; //hard coded
 var snippetList = [  //hard coded
   {
     title: "Ajax Call",
@@ -39,17 +39,32 @@ $(function(){
   source = $('#snippet-template').html();
   template = Handlebars.compile(source);
 
+//   $.ajax({
+//   method: 'GET',
+//   url: '/api/albums',
+//   success: firstGet
+// });
+
 
   renderSnippets();
+  updateRepoName(repoName);
 
 });//end document on ready
 
+//handle first get request
 function firstGet(json){
-  repo = json;
-  repoName = repo.name;
+  updateRepoName(newName);
+  snippets = repo.snippets;
+  renderSnippets();
 }
 
-//renders to handlebars with a given source to a target template
+function updateRepoName(newName){
+  repoName = newName;
+  $('#repo-name h1').empty();
+  $('#repo-name h1').append(repoName);
+}
+
+//renders snippetList to handlebars (clears all elements and repopulates)
 function renderSnippets(){
   console.log("now rendering snippets ", source);
   $("#snippet-target").empty();
