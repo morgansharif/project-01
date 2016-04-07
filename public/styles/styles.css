@@ -4,9 +4,9 @@
 .container{
   text-align: center;
   height: 100vh;
-  text-shadow: 1px 1px 2px black;
 }
 .jumbotron{
+  text-shadow: 1px 1px 2px black;
   padding-top: 180px;
   color: white;
   padding: 0px 0px;
