@@ -49,7 +49,7 @@ app.get('/api/repos/:id', function(req, res){
   console.log('->req: id:', req.params.id);
   db.Repo.findOne({_id: req.params.id}, function(err, foundRepo){
     if (err){return console.log("error: ", err);}
-    console.log('--found repo:',foundRepo.name);
+    console.log('--found repo:', (foundRepo.name || "<no name>"));
     console.log('<-res: repo:', foundRepo);
     res.json(foundRepo);
   });
@@ -59,11 +59,11 @@ app.get('/api/repos/:id', function(req, res){
 app.post('/api/repos', function(req, res){
   console.log("POST '/api/repos' TRIGGERED");
   console.log('->req:', req.body);
-  var name = req.body.name;
-  if (!name){
-  name = "<Untitled Repo>";
+  var repo_name = req.body.name;
+  if (!repo_name){
+  repo_name = "<untitled repo>";
   }
-  var newRepo = new db.Repo(req.body);
+  var newRepo = new db.Repo({name: repo_name});
   newRepo.save(function(err, repo){
     if (err) {return console.log("save error: " + err);}
     console.log('--res:',repo);
@@ -77,7 +77,11 @@ app.put('/api/repos/:id', function(req, res){
   db.Repo.findOne({_id: req.params.id}, function(err, foundRepo){
     if (err){return console.log("error: ", err);}
     console.log('--found repo:',foundRepo.name);
-    foundRepo.name = req.body.name;
+    if(req.body.name){
+      foundRepo.name = req.body.name;
+    }else {
+      foundRepo.name = "<untitled repo>";
+    }
     foundRepo.save();
     console.log('<-res: repo:', foundRepo.name);
     res.json(foundRepo.name);
