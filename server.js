@@ -56,8 +56,23 @@ app.get('/api/repos/:id', function(req, res){
 });
 
 // POST new repo
-// app.post('api/repos'
-// req.body.name
+app.post('api/repos', function(req, res){
+  console.log("POST '/api/repos' TRIGGERED");
+  console.log('->req:', req.body);
+  var name = req.body.name;
+  if (!name){
+  name = "<Untitled Repo>";
+  }
+  var newRepo = new db.Repo(req.body);
+  newRepo.save(function(err, repo){
+    if (err) {return console.log("save error: " + err);}
+    console.log('--res:',repo);
+    res.json(repo);
+  });
+});
+
+
+
 
 // PUT update repo name
 // app.put('/api/repos/:id'

@@ -5,6 +5,14 @@
   text-align: center;
   height: 100vh;
 }
+#hero-page h1{
+}
+a{
+  color: white;
+}
+a:hover{
+  color: white;
+}
 .jumbotron{
   text-shadow: 1px 1px 2px black;
   color: white;
@@ -31,7 +39,6 @@ pre code {
     white-space: pre;
     text-align: left;
 }
-
 
 nav{
   padding-top: 10px;

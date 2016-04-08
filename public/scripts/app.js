@@ -49,6 +49,13 @@ $(function(){
     });
   });
 
+  $('#new-repo-lnk').on('click', function(){
+    console.log('new repo link clicked!');
+    $("div.hidden").removeClass("hidden");
+    $("#new-repo-lnk").addClass("hidden");
+    });
+
+
   //CREATE NEW REPO
   $('#new-repo-btn').on('click', function(){
     // console.log('clicked submit: ', $(this).serialize());
@@ -82,6 +89,8 @@ function firstGet(repo){
   renderSnippets();
   togglePages();
 }
+
+
 
 // Toggles visibility of repo and hero pages
 function togglePages(){
