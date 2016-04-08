@@ -30,7 +30,7 @@ $(function(){
 
   $('#new-repo-lnk').on('click', function(){
     console.log('new repo link clicked!');
-    $("div.hidden").removeClass("hidden");
+    $(".jumbotron div.hidden").removeClass("hidden");
     $("#new-repo-lnk").addClass("hidden");
     });
 
