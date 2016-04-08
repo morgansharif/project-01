@@ -56,20 +56,20 @@
 
     <!--     START REPO PAGE      -->
     <div id="repo-page" class="hidden page">
-
+      <script id="repo-template" type="text/x-handlebars-template">
       <nav class="navbar navbar-inverse">
         <div class="container-fluid">
           <!-- Brand and toggle get grouped for better mobile display -->
           <div class="navbar-header">
-            <a id="repo-name" class="navbar-brand" href="#"><h1>Snippet Repo</h1></a>
+            <a id="repo-name" class="navbar-brand" href="#"><h1>{{name}}</h1></a>
           </div>
 
           <!-- Collect the nav links, forms, and other content for toggling -->
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
-              <li><a id="id-name">Link</a></li>
+              <li>Repo Id: <a id="id-name">{{_id}}</a></li>
               <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Snippet Options<span class="caret"></span></a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Repo Options<span class="caret"></span></a>
                 <ul class="dropdown-menu">
                   <li><a id="edit-repo-name" href="#">Edit Repo Name</a></li>
                   <li><a href="#">Logout</a></li>
@@ -84,14 +84,14 @@
 
 
       <div class="container">
-        <div id="snippet-target" class="row">
+        <div class="row">
 
           <!-- one snippet -->
-          <script id="snippet-template" type="text/x-handlebars-template">
+        {{#each snippets}}
           <div class="col-xs-12 col-sm-6 col-md-3">
           <div class="panel panel-default">
             <div class="panel-heading">
-              <a href="#" class="btn btn-default btn-xs pull-left" role="button"><i class="glyphicon glyphicon-edit"></i></a>
+              <a href="#" class="btn btn-default btn-xs pull-left" role="button" data-id={{_id}}><i class="glyphicon glyphicon-edit"></i></a>
 
               <h3 class="panel-title">{{title}}</h3>
             </div>
@@ -104,6 +104,7 @@
 
             </div>
           </div>
+        {{/each}}
         </script>
 
         </div><!-- end row / snippet target -->

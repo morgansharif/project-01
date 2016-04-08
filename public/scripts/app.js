@@ -1,21 +1,17 @@
 
 //HARDCODED SEED DATA
-var repoName = "Morgan's Repo"; //hard coded
-var currRepo = {
-  snippets: []
-};
+var currRepo = {};
 //End hard coded data
 
   var source;
   var template;
-  var currentRepo_id;
 
 //document on ready
 $(function(){
   console.log('app.js loaded');
 
   //store handlebars Snippet template
-  source = $('#snippet-template').html();
+  source = $('#repo-template').html();
   template = Handlebars.compile(source);
 
   //Repo Login Submit
@@ -50,21 +46,14 @@ $(function(){
     });
   });
 
-  //Rename Repo -- Modal Popup
-  $('a#edit-repo-name').on('click', function(){
-    console.log('rename repo link clicked!');
-    $('#rn-modal').data('currentRepo_id');
-    $('#rn-modal').modal('show');
-    });
-
-  //Rename Repo -- PUT /api/repos/
+  //MODAL Rename Repo -- PUT /api/repos/
   $('#saveRepo').on('click', function(){
     console.log('post new repo name link clicked!');
-    $('#rn-modal').data('currentRepo_id');
+    $('#rn-modal').data('currRepo._id');
     console.log("sending: "+ $('#repoInput').val());
     $.ajax({
       method: 'PUT',
-      url: '/api/repos/' + currentRepo_id,
+      url: '/api/repos/' + currRepo._id,
       data: {name: $('#repoInput').val()},
       success: updateRepoName,
       error: handleError
@@ -73,10 +62,9 @@ $(function(){
     });
 
 
-
 // TEMPORARY vvvvvvv
-  renderSnippets();
-  updateRepoName(repoName);
+  // renderRepo();
+  // updateRepoName(repoName);
 //TEMP       ^^^^^^^
 
 
@@ -89,17 +77,36 @@ function handleError(err){
 
 // Handles first GET request to populate page and global variables
 function firstGet(repo){
-  updateRepoName(repo.name);
-  currentRepo_id = repo._id;
-  $('#id-name').text("Repo ID: "+ currentRepo_id);
+  currRepo = repo;
+  // updateRepoName(repo.name);
+  $('#id-name').text("Repo ID: "+ currRepo._id);
   currRepo.snippets = repo.snippets;
   console.log("snippets:", repo.snippets);
-  renderSnippets();
+  renderRepo();
   togglePages();
-}
+
+
+
+//REPO PAGE EVENT LISTENERS
+
+  //Rename Repo -- Modal Popup
+  $('a#edit-repo-name').on('click', function(){
+    console.log('rename repo link clicked!');
+    // $('#rn-modal').data('currRepo._id');
+    $('#rn-modal').modal('show');
+    });
+
+
+
+
+
+
+
+} // REPO LISTENERS
 
 function logout(){
-
+  togglePanes();
+  $("#repo-target").empty();
 }
 
 // Toggles visibility of repo and hero pages
@@ -116,19 +123,19 @@ function togglePages(){
 
 // Updates the header of the repo nav bar
 function updateRepoName(newName){
-  repoName = newName;
-  $('#repo-name h1').text(repoName);
+  currRepo.name = newName;
+  $('#repo-name h1').text(currRepo.name);
 }
 
 //renders currRepo.snippets to handlebars (clears all elements and repopulates)
-function renderSnippets(){
+function renderRepo(){
   console.log("**now rendering snippets**");
-  $("#snippet-target").empty();
-  currRepo.snippets.forEach(function(snippet){
-    var snippetHtml = template(snippet);
-    console.log('adding snippet:'+snippet);
-    $("#snippet-target").prepend(snippetHtml);
-  });
+  $("#repo-target").empty();
+  // currRepo.snippets.forEach(function(snippet){
+    var snippetHtml = template(currRepo);
+    // console.log('adding snippet:'+snippet);
+    $("#repo-page").prepend(snippetHtml);
+  // });
 }
 
 
