@@ -72,12 +72,17 @@ app.post('/api/repos', function(req, res){
 });
 
 
-
-
-// PUT update repo name
-// app.put('/api/repos/:id'
-// req.params.id
-// req.body.name
+// PUT update repo name --Return foundRepo.name
+app.put('/api/repos/:id', function(req, res){
+  db.Repo.findOne({_id: req.params.id}, function(err, foundRepo){
+    if (err){return console.log("error: ", err);}
+    console.log('--found repo:',foundRepo.name);
+    foundRepo.name = req.body.name;
+    foundRepo.save();
+    console.log('<-res: repo:', foundRepo.name);
+    res.json(foundRepo.name);
+  });
+});
 
 // POST new snippet
 // app.get('/api/repos/:id/snippets'
