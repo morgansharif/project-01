@@ -56,7 +56,7 @@ app.get('/api/repos/:id', function(req, res){
 });
 
 // POST new repo
-app.post('api/repos', function(req, res){
+app.post('/api/repos', function(req, res){
   console.log("POST '/api/repos' TRIGGERED");
   console.log('->req:', req.body);
   var name = req.body.name;
@@ -85,17 +85,17 @@ app.post('api/repos', function(req, res){
 // req.body (title/desc/code)
 
 // PUT existing snippet
-// app.put('api/repos/:repo_id/snippets/:snippet_id'
+// app.put('/api/repos/:repo_id/snippets/:snippet_id'
 // req.params.repo_id
 // req.params.snippet_id
 // req.body (title/desc/code)
 
 // DELETE existing repo
-// app.delete('api/repos/:id'
+// app.delete('/api/repos/:id'
 // req.params.id
 
 // DELETE existing snippet
-// app.delete('api/repos/:repo_id/snippets/snippet_id'
+// app.delete('/api/repos/:repo_id/snippets/snippet_id'
 // req.params.id
 
 
