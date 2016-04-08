@@ -41,20 +41,33 @@ $(function(){
   //REPO LOGIN SUBMISSIONS
   $('#login-btn').on('click', function(){
     // console.log('clicked submit: ', $(this).serialize());
-    console.log('REPO LOGIN Clicked! with:'+ $("#repo-login").val() );
+    console.log('REPO LOGIN BTN Clicked! with:'+ $("#repo-login").val() );
       $.ajax({
       method: 'GET',
       url: '/api/repos/'+ $("#repo-login").val(),
       success: firstGet
+    });
+  });
 
+  //CREATE NEW REPO
+  $('#new-repo-btn').on('click', function(){
+    // console.log('clicked submit: ', $(this).serialize());
+    console.log('CREATE NEW REPO BTN Clicked! with:'+ $("#new-repo-btn").val());
+    console.log('sending: ' + $("#repo-create").serialize());
+      $.ajax({
+      method: 'POST',
+      url: '/api/repos/',
+      data: $("#repo-create").serialize(),
+      success: firstGet
     });
   });
 
 
-
-// TEMPORARY
+// TEMPORARY vvvvvvv
   renderSnippets();
   updateRepoName(repoName);
+//TEMP       ^^^^^^^
+
 
 });// END document on ready
 

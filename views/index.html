@@ -28,18 +28,31 @@
         <!-- start input-group -->
         <div class="col-sm-6 col-sm-offset-3">
           <div class="input-group">
-            <input id="repo-login" type="text" class="form-control" placeholder="Login with repo id...">
+            <input id="repo-login" type="text" class="form-control" placeholder="Login with your repo ID!">
             <span class="input-group-btn">
               <button id="login-btn" class="btn btn-default" type="button">Login</button>
             </span>
           </div>
         </div>
+        <br /><br /><br />
+        <div class="col-sm-6 col-sm-offset-3">
+          <div class="input-group">
+            <input id="repo-create" name="name" type="text" class="form-control" placeholder="Name your new repo!">
+            <span class="input-group-btn">
+              <button id="new-repo-btn" class="btn btn-default" type="button">Login</button>
+            </span>
+          </div>
+        </div>
         <!-- /input-group -->
+
+
       </div>
     </div>
     <!-- end jumbotron -->
 
     <!--     START REPO PAGE      -->
+    <div id="repo-page" class="hidden">
+
     <nav class="navbar navbar-inverse">
       <div id="repo-name">
         <h1>Snippet Repo</h1>
@@ -47,7 +60,7 @@
     </nav>
 
 
-      <div id="repo-page" class="container">
+      <div class="container">
         <div id="snippet-target" class="row">
 
           <!-- one snippet -->
@@ -74,6 +87,7 @@
 
       </div> <!-- end container -->
 
+    </div>
 
         <!-- <div class ="col-sm-4 col-md-3">
           <div class="panel panel-default">
