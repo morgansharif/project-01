@@ -28,36 +28,60 @@ var snippetList = [  //hard coded
 
   var source;
   var template;
-
+  var currentRepo_id;
 
 //document on ready
 $(function(){
   console.log('app.js loaded');
 
-
   //store handlebars Snippet template
   source = $('#snippet-template').html();
   template = Handlebars.compile(source);
 
-//   $.ajax({
-//   method: 'GET',
-//   url: '/api/snippets',
-//   success: firstGet
-// });
+  //REPO LOGIN SUBMISSIONS
+  $('#login-btn').on('click', function(){
+    // console.log('clicked submit: ', $(this).serialize());
+    console.log('REPO LOGIN Clicked! with:'+ $("#repo-login").val() );
+      $.ajax({
+      method: 'GET',
+      url: '/api/repos/'+ $("#repo-login").val(),
+      success: firstGet
+
+    });
+  });
 
 
+
+// TEMPORARY
   renderSnippets();
   updateRepoName(repoName);
 
-});//end document on ready
+});// END document on ready
 
-//handle first get request
+
+
+
+// Handles first GET request
 function firstGet(repo){
   updateRepoName(repo.name);
+  currentRepo_id = repo._id;
   snippetsList = repo.snippets;
   renderSnippets();
+  togglePages();
 }
 
+// Toggles visibility of repo and hero pages
+function togglePages(){
+  if($("#hero-page").hasClass("hidden")){
+    $("#hero-page").removeClass("hidden");
+    $("#repo-page").addClass("hidden");
+  }else{
+    $("#hero-page").addClass("hidden");
+    $("#repo-page").removeClass("hidden");
+  }
+}
+
+// Updates the header of the repo nav bar
 function updateRepoName(newName){
   repoName = newName;
   $('#repo-name h1').empty();

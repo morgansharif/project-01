@@ -35,6 +35,7 @@ var controllers = require('./controllers');
  app.get('/', function homepage (req, res) {
    res.sendFile(__dirname + '/views/index.html');
  });
+
  /*
  * JSON API Endpoints
  */
@@ -49,6 +50,7 @@ app.get('/api/repos/:id', function(req, res){
   db.Repo.findOne({_id: req.params.id}, function(err, foundRepo){
     if (err){return console.log("error: ", err);}
     console.log('--found repo:',foundRepo.name);
+    console.log('<-res: repo:', foundRepo);
     res.json(foundRepo);
   });
 });
