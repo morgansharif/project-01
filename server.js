@@ -49,7 +49,7 @@ app.get('/api/repos/:id', function(req, res){
   console.log('->req: id:', req.params.id);
   db.Repo.findOne({_id: req.params.id}, function(err, foundRepo){
     if (err){return console.log("error: ", err);}
-    console.log('--found repo:', (foundRepo.name || "<no name>"));
+    console.log('--found repo:', (foundRepo || "no repo found"));
     console.log('<-res: repo:', foundRepo);
     res.json(foundRepo);
   });
@@ -91,7 +91,7 @@ app.put('/api/repos/:id', function(req, res){
 
 
 // DELETE existing repo
-app.delete('/api/repos/:id', function (){
+app.delete('/api/repos/:id', function (req, res){
   console.log("DELETE '/api/repos/" + req.params.id + "TRIGGERED");
   db.Repo.findByIdAndRemove(req.params.id, function (err, removedRepo){
     if (err){return console.log("delete error: ", err);}

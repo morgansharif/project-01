@@ -4,7 +4,8 @@ var Schema = mongoose.Schema;
 var SnippetSchema = new Schema ({
   title: String,
   desc: String,
-  code: String
+  code: String,
+  // repo: {type: Schema.Types.ObjectId, ref: "Repo"}
 });
 
 var Snippet = mongoose.model('Snippet', SnippetSchema);
