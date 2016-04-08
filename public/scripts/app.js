@@ -1,9 +1,10 @@
 
 //HARDCODED SEED DATA
 var repoName = "Morgan's Repo"; //hard coded
-var snippetList = [];
+var currRepo = {
+  snippets: []
+};
 //End hard coded data
-
 
   var source;
   var template;
@@ -72,6 +73,7 @@ $(function(){
     });
 
 
+
 // TEMPORARY vvvvvvv
   renderSnippets();
   updateRepoName(repoName);
@@ -85,17 +87,19 @@ function handleError(err){
   console.log("Error: " + err);
 }
 
-
-
-// Handles first GET request
+// Handles first GET request to populate page and global variables
 function firstGet(repo){
   updateRepoName(repo.name);
   currentRepo_id = repo._id;
   $('#id-name').text("Repo ID: "+ currentRepo_id);
-  snippetList = repo.snippets;
+  currRepo.snippets = repo.snippets;
   console.log("snippets:", repo.snippets);
   renderSnippets();
   togglePages();
+}
+
+function logout(){
+
 }
 
 // Toggles visibility of repo and hero pages
@@ -116,11 +120,11 @@ function updateRepoName(newName){
   $('#repo-name h1').text(repoName);
 }
 
-//renders snippetList to handlebars (clears all elements and repopulates)
+//renders currRepo.snippets to handlebars (clears all elements and repopulates)
 function renderSnippets(){
   console.log("**now rendering snippets**");
   $("#snippet-target").empty();
-  snippetList.forEach(function(snippet){
+  currRepo.snippets.forEach(function(snippet){
     var snippetHtml = template(snippet);
     console.log('adding snippet:'+snippet);
     $("#snippet-target").prepend(snippetHtml);
