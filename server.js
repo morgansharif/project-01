@@ -42,9 +42,16 @@ var controllers = require('./controllers');
  //look at api
  app.get('/api', controllers.api.index);
 
-// GET all snippets
-// app.get('/api/repos/:id/snippets',
-// req.params.id
+// GET repo (and all its snippets)
+app.get('/api/repos/:id', function(req, res){
+  console.log('GET /api/repos/:id/snippets TRIGGERED');
+  console.log('->req: id:', req.params.id);
+  db.Repo.findOne({_id: req.params.id}, function(err, foundRepo){
+    if (err){return console.log("error: ", err);}
+    console.log('--found repo:',foundRepo.name);
+    res.json(foundRepo);
+  });
+});
 
 // POST new repo
 // app.post('api/repos'

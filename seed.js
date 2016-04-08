@@ -6,13 +6,13 @@ var db = require("./models");
 
 var repoList = [
   {
-  name: "Morgan's Repo"
+  name: "Morgan's Repo",
   },
   {
-  name: "Bobs's Repo"
+  name: "Bobs's Repo",
   },
   {
-  name: "Emily's Repo"
+  name: "Emily's Repo",
   }
 ];
 
@@ -46,8 +46,8 @@ var snippetList = [
 
 repoList.forEach(function(repo) {
   repo.snippets = snippetList;
-  console.log('REPO', repo);
 });
+console.log("repoList:",repoList);
 
 //clear all existing albums from db
 db.Repo.remove({}, function(err, repos){
