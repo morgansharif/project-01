@@ -3,6 +3,9 @@ var currRepo = {};
 var source;
 var template;
 
+////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////
 //document on ready
 $(function(){
   console.log('app.js loaded');
@@ -72,6 +75,13 @@ $(function(){
 });// END document on ready
 
 
+////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////
+
+
+
+
 function handleError(err){
   console.log("Error: " + err);
 }
@@ -90,7 +100,7 @@ function firstGet(repo){
 
 //REPO PAGE EVENT LISTENERS
 
-  //Rename Repo -- Modal Popup
+  //dropdown menu listeners:
   $('a#edit-repo-name').on('click', function editRepoName(){
     console.log('RENAME repo link clicked!');
     // $('#rn-modal').data('currRepo._id');
@@ -108,16 +118,26 @@ function firstGet(repo){
     $('#del-repo-modal').modal('show');
   });
 
+  //snippet panel listeners
   $('a#snp-update').on('click', function updateSnippet(){
-    console.log("this.data.id:", $(this).data('id'));
-    $('#update-snippet').data($(this).data());
-    console.log('DELETE repo link clicked!');
+    console.log('UPDATE repo link clicked!');
+    //pull uniqe repo.snippet._id from item
+    var currSnipId = $(this).data('id');
+    // get index val of panel (to pull data from repo.snippets[index])
+    var snippetIndex = $( '#'+currSnipId ).index(".snippet-panel");
+    //populate modal fields from repo.snippets[index]
+    var currSnippet = currRepo.snippets[snippetIndex];
+    $("#snippetTitle").attr("value", currSnippet.title);
+    $("#snippetDesc").attr("value", currSnippet.desc);
+    $("#snippetCode").val(currSnippet.code);
+    //display modal
     $('#upd-snippet-modal').modal('show');
   });
 
 
 
-} // end firstGet
+} // end firstGet ////////////////////////////////////////////////////////////
+
 
 function logout(){
   togglePages();
@@ -137,6 +157,17 @@ function togglePages(){
   }
 }
 
+// // finds a snipped in currRepo
+// function findSnippetById(id){
+//   console.log(currRepo);
+//   var snippets = currRepo.snippets;
+//   for(var i = 0; i < snippets.length; i ++) {
+//     console.log(snippets[i]._id);
+//     if(snippets[i]._id === id) {
+//     return i;
+//   }
+// }
+// }
 
 // Updates the header of the repo nav bar
 function updateRepoName(newName){

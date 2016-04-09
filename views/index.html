@@ -87,16 +87,16 @@
 
           <!-- one snippet -->
         {{#each snippets}}
-          <div class="col-xs-12 col-sm-6 col-md-3">
+          <div id={{_id}} class="col-xs-12 col-sm-6 col-md-3 snippet-panel">
           <div class="panel panel-default">
             <div class="panel-heading">
               <a id="snp-update" href="#" class="btn btn-default btn-xs pull-left" role="button" data-id={{_id}}><i class="glyphicon glyphicon-edit"></i></a>
 
-              <h3 class="panel-title">{{title}}</h3>
+              <h3 class="panel-title title">{{title}}</h3>
             </div>
             <div class="panel-body">
-              <pre class="pre-scrollable"><code>{{code}}</code></pre>
-              <p>
+              <pre class="pre-scrollable code"><code>{{code}}</code></pre>
+              <p class="desc">
                 {{desc}}
               </p>
             </div>
@@ -176,11 +176,12 @@
             <div class="modal-dialog">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h4 class="modal-title">Update Modal</h4>
+
+                  <h4 class="modal-title">Update Snippet</h4>
                 </div>
                 <div class="modal-body">
             <!-- START FORM -->
-                  <form id="create-song">
+                  <form id="update-snippet">
 
                   <fieldset class='form-horizontal'>
                     <!-- Text input-->
@@ -201,10 +202,9 @@
 
                     <!-- Text input-->
                     <div class="form-group">
-                      <label class="col-md-4 control-label" for="desc">Code</label>
+                      <label class="col-md-4 control-label" for="code">Code</label>
                       <div class="col-md-4">
-                        <textarea name="code" cols=40 rows=10></textarea>
-                        <pre><code><input id="snippetCode" name="code" type="text" placeholder="" class="form-control input-md"></code></pre>
+                        <textarea id="snippetCode" class="form-control input-md" type="text" placeholder="" name="code" wrap="off" cols=40 rows=10></textarea>
                       </div>
                     </div>
 
@@ -213,8 +213,9 @@
             <!-- END FORM -->
                 </div>
                 <div class="modal-footer">
+                  <button id="delete-snippet" type="button" class="btn btn-danger pull-left">Delete</button>
                   <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                  <button id="save-snippet" type="button" class="btn btn-primary">Update Snippet</button>
+                  <button id="save-snippet" type="button" class="btn btn-primary">Update</button>
                 </div>
               </div><!-- /.modal-content -->
             </div><!-- /.modal-dialog -->
