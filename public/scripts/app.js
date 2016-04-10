@@ -5,9 +5,6 @@ var template;
 var currSnippetId;
 var snippetIndex;
 
-////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////
 //document on ready
 $(function(){
   console.log('app.js loaded');
@@ -87,16 +84,12 @@ $(function(){
       error: handleError
     });
     $('#upd-snippet-modal').modal('hide');
+    $('#update-snippet')[0].reset();
   });
-
-
 
 });// END document on ready
 
 
-////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////
 
 
 
@@ -114,15 +107,7 @@ function firstGet(repo){
   console.log("snippets:", repo.snippets);
   renderRepo();
   togglePages();
-
-
-
-
-
-
-
-} // end firstGet ////////////////////////////////////////////////////////////
-
+}
 
 function logout(){
   togglePages();
@@ -142,15 +127,15 @@ function togglePages(){
   }
 }
 
-
 // Updates the header of the repo nav bar
 function updateRepoName(newName){
   currRepo.name = newName;
   $('#repo-name h1').text(currRepo.name);
 }
 
+//updates local snippet info from ajax response and re-renders page
 function updateSnippet(updatedSnippet){
-  console.log("updating snippet: "+currRepo.snippets[snippetIndex].title + " with: "+ updatedSnippet);
+  console.log("updating snippet: " + currRepo.snippets[snippetIndex].title + " with: "+ updatedSnippet);
   currRepo.snippets[snippetIndex] = updatedSnippet;
   renderRepo();
 }
@@ -170,7 +155,7 @@ function renderRepo(){
     console.log('RENAME repo link clicked!');
     // $('#rn-modal').data('currRepo._id');
     $('#rn-modal').modal('show');
-    });
+  });
 
   $('a#logout').on('click', function logout(){
     console.log('LOGOUT link clicked!');
@@ -183,14 +168,14 @@ function renderRepo(){
     $('#del-repo-modal').modal('show');
   });
 
-  //snippet panel listeners
+  //update snippet
   $('a#snp-update').on('click', function updateSnippet(){
-    console.log('UPDATE repo link clicked!');
+    console.log('UPDATE snippet link clicked!');
     //pull uniqe repo.snippet._id from item
     currSnippetId = $(this).data('id');
     // get index val of panel (to pull data from repo.snippets[index])
     snippetIndex = $( '#'+currSnippetId ).index(".snippet-panel");
-    console.log("snipped index =: "+ snippetIndex);
+    console.log("snippet index =: "+ snippetIndex);
     //populate modal fields from repo.snippets[index]
     var currSnippet = currRepo.snippets[snippetIndex];
     $("#snippetTitle").attr("value", currSnippet.title);
@@ -201,6 +186,3 @@ function renderRepo(){
   });
 
 }
-
-
-// render(snippetSource, snippetTemplate);
