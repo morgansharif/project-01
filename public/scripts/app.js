@@ -2,6 +2,8 @@
 var currRepo = {};
 var source;
 var template;
+var currSnippetId;
+var snippetIndex;
 
 ////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////
@@ -60,7 +62,7 @@ $(function(){
     $('#rn-modal').modal('hide');
     });
 
-  //modal button-> DELETE Repo -- DELETE /api/repos/:id
+  //modal button clicked-> DELETE Repo -- DELETE /api/repos/:id
   $('#delete-repo').on('click', function(){
     console.log('post new repo name link clicked!');
     $.ajax({
@@ -71,6 +73,23 @@ $(function(){
     });
     $('#del-repo-modal').modal('hide');
   });
+
+  //modal button-> UPDATE Repo
+  //form is update-snippet
+  $('#save-snippet').on('click', function(){
+    console.log('Save snippet link clicked!');
+    console.log("sending: ", $('#update-snippet').serialize());
+    $.ajax({
+      method: 'PUT',
+      url: "/api/repos/" + currRepo._id + "/snippets/" + currSnippetId,
+      success: updateSnippet,
+      data: $('#update-snippet').serialize(),
+      error: handleError
+    });
+    $('#upd-snippet-modal').modal('hide');
+  });
+
+
 
 });// END document on ready
 
@@ -98,41 +117,7 @@ function firstGet(repo){
 
 
 
-//REPO PAGE EVENT LISTENERS
 
-  //dropdown menu listeners:
-  $('a#edit-repo-name').on('click', function editRepoName(){
-    console.log('RENAME repo link clicked!');
-    // $('#rn-modal').data('currRepo._id');
-    $('#rn-modal').modal('show');
-    });
-
-  $('a#logout').on('click', function logout(){
-    console.log('LOGOUT link clicked!');
-    togglePages();
-    $("#repo-page").empty();
-  });
-
-  $('a#del-repo').on('click', function del(){
-    console.log('DELETE repo link clicked!');
-    $('#del-repo-modal').modal('show');
-  });
-
-  //snippet panel listeners
-  $('a#snp-update').on('click', function updateSnippet(){
-    console.log('UPDATE repo link clicked!');
-    //pull uniqe repo.snippet._id from item
-    var currSnipId = $(this).data('id');
-    // get index val of panel (to pull data from repo.snippets[index])
-    var snippetIndex = $( '#'+currSnipId ).index(".snippet-panel");
-    //populate modal fields from repo.snippets[index]
-    var currSnippet = currRepo.snippets[snippetIndex];
-    $("#snippetTitle").attr("value", currSnippet.title);
-    $("#snippetDesc").attr("value", currSnippet.desc);
-    $("#snippetCode").val(currSnippet.code);
-    //display modal
-    $('#upd-snippet-modal').modal('show');
-  });
 
 
 
@@ -157,17 +142,6 @@ function togglePages(){
   }
 }
 
-// // finds a snipped in currRepo
-// function findSnippetById(id){
-//   console.log(currRepo);
-//   var snippets = currRepo.snippets;
-//   for(var i = 0; i < snippets.length; i ++) {
-//     console.log(snippets[i]._id);
-//     if(snippets[i]._id === id) {
-//     return i;
-//   }
-// }
-// }
 
 // Updates the header of the repo nav bar
 function updateRepoName(newName){
@@ -175,15 +149,57 @@ function updateRepoName(newName){
   $('#repo-name h1').text(currRepo.name);
 }
 
+function updateSnippet(updatedSnippet){
+  console.log("updating snippet: "+currRepo.snippets[snippetIndex].title + " with: "+ updatedSnippet);
+  currRepo.snippets[snippetIndex] = updatedSnippet;
+  renderRepo();
+}
+
+
 //renders currRepo.snippets to handlebars (clears all elements and repopulates)
 function renderRepo(){
   console.log("**now rendering snippets**");
   $("#repo-page").empty();
-  // currRepo.snippets.forEach(function(snippet){
-    var snippetHtml = template(currRepo);
-    // console.log('adding snippet:'+snippet);
-    $("#repo-page").prepend(snippetHtml);
-  // });
+  var snippetHtml = template(currRepo);
+  $("#repo-page").prepend(snippetHtml);
+
+  //REPO PAGE EVENT LISTENERS
+
+  //dropdown menu listeners:
+  $('a#edit-repo-name').on('click', function editRepoName(){
+    console.log('RENAME repo link clicked!');
+    // $('#rn-modal').data('currRepo._id');
+    $('#rn-modal').modal('show');
+    });
+
+  $('a#logout').on('click', function logout(){
+    console.log('LOGOUT link clicked!');
+    togglePages();
+    $("#repo-page").empty();
+  });
+
+  $('a#del-repo').on('click', function del(){
+    console.log('DELETE repo link clicked!');
+    $('#del-repo-modal').modal('show');
+  });
+
+  //snippet panel listeners
+  $('a#snp-update').on('click', function updateSnippet(){
+    console.log('UPDATE repo link clicked!');
+    //pull uniqe repo.snippet._id from item
+    currSnippetId = $(this).data('id');
+    // get index val of panel (to pull data from repo.snippets[index])
+    snippetIndex = $( '#'+currSnippetId ).index(".snippet-panel");
+    console.log("snipped index =: "+ snippetIndex);
+    //populate modal fields from repo.snippets[index]
+    var currSnippet = currRepo.snippets[snippetIndex];
+    $("#snippetTitle").attr("value", currSnippet.title);
+    $("#snippetDesc").attr("value", currSnippet.desc);
+    $("#snippetCode").val(currSnippet.code);
+    //display modal
+    $('#upd-snippet-modal').modal('show');
+  });
+
 }
 
 

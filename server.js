@@ -92,7 +92,7 @@ app.put('/api/repos/:id', function(req, res){
 
 // DELETE existing repo
 app.delete('/api/repos/:id', function (req, res){
-  console.log("DELETE '/api/repos/" + req.params.id + "TRIGGERED");
+  console.log("DELETE /api/repos/" + req.params.id + "TRIGGERED");
   db.Repo.findByIdAndRemove(req.params.id, function (err, removedRepo){
     if (err){return console.log("delete error: ", err);}
     res.json(removedRepo);
@@ -105,10 +105,63 @@ app.delete('/api/repos/:id', function (req, res){
 // req.body (title/desc/code)
 
 // PUT existing snippet
-// app.put('/api/repos/:repo_id/snippets/:snippet_id'
-// req.params.repo_id
-// req.params.snippet_id
-// req.body (title/desc/code)
+app.put('/api/repos/:repo_id/snippets/:snippet_id', function (req, res){
+  console.log("PUT '/api/repos/" + req.params.repo_id + "snippets/" + req.params.snippet_id + "' TRIGGERED");
+  db.Repo.findOne({_id: req.params.repo_id}, function(err, foundRepo){
+    if (err){return console.log("error: ", err);}
+    console.log('--found repo:',foundRepo.name);
+    // console.log("snippets: " + foundRepo.snippets);
+    var foundSnippet = foundRepo.snippets.id(req.params.snippet_id);
+        console.log('--found snippet: '+ foundSnippet.title);
+        foundSnippet.title = req.body.title;
+        foundSnippet.desc = req.body.desc;
+        foundSnippet.code = req.body.code;
+        foundSnippet.save();
+        console.log('<-res: snippet:', foundSnippet.title);
+        res.json(foundSnippet);
+  });
+});
+
+
+// // delete todo embedded in list
+// app.delete('/api/lists/:listId/todos/:id', function (req, res) {
+//   // set the value of the list and todo ids
+//   var listId = req.params.listId;
+//   var todoId = req.params.id;
+//
+//   // find list in db by id
+//   List.findOne({_id: listId}, function (err, foundList) {
+//     // find todo embedded in list
+//     var foundTodo = foundList.todos.id(todoId);
+//     // remove todo
+//     foundTodo.remove();
+//     foundList.save(function (err, savedList) {
+//       res.json(foundTodo);
+//     });
+//   });
+// });//DELETE
+
+
+
+
+
+// delete todo embedded in list
+app.delete('/api/lists/:listId/todos/:id', function (req, res) {
+  // set the value of the list and todo ids
+  var listId = req.params.listId;
+  var todoId = req.params.id;
+
+  // find list in db by id
+  List.findOne({_id: listId}, function (err, foundList) {
+    // find todo embedded in list
+    var foundTodo = foundList.todos.id(todoId);
+    // remove todo
+    foundTodo.remove();
+    foundList.save(function (err, savedList) {
+      res.json(foundTodo);
+    });
+  });
+});
 
 // DELETE existing snippet
 // app.delete('/api/repos/:repo_id/snippets/snippet_id'
