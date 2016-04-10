@@ -49,33 +49,11 @@ app.get('/api/repos/:id', controllers.repos.show);
 // POST new repo
 app.post('/api/repos', controllers.repos.create);
 
-// PUT update repo name --Return foundRepo.name
-app.put('/api/repos/:id', function(req, res){
-  console.log("PUT '/api/repos' TRIGGERED");
-  db.Repo.findOne({_id: req.params.id}, function(err, foundRepo){
-    if (err){return console.log("error: ", err);}
-    console.log('--found repo:',foundRepo.name);
-    if(req.body.name){
-      foundRepo.name = req.body.name;
-    }else {
-      foundRepo.name = "<untitled repo>";
-    }
-    foundRepo.save(function (err, savedRepo){
-      console.log('<-res: repo:', foundRepo.name);
-      res.json(foundRepo.name);
-    });
-  });
-});
-
+// PUT repo name
+app.put('/api/repos/:id', controllers.repos.update);
 
 // DELETE existing repo
-app.delete('/api/repos/:id', function (req, res){
-  console.log("DELETE /api/repos/" + req.params.id + "TRIGGERED");
-  db.Repo.findByIdAndRemove(req.params.id, function (err, removedRepo){
-    if (err){return console.log("delete error: ", err);}
-    res.json(removedRepo);
-  });
-});
+app.delete('/api/repos/:id', controllers.repos.destroy);
 
 // POST new snippet
 app.post('/api/repos/:id/snippets', function (req, res){

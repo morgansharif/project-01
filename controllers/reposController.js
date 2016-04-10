@@ -1,9 +1,5 @@
 var db = require('../models');
 
-function index(req, res) {
-  // FILL ME IN !
-}
-
 // POST /api/repos
 function create(req, res) {
   console.log("POST '/api/repos' TRIGGERED");
@@ -31,17 +27,35 @@ function show(req, res) {
 }
 
 function destroy(req, res) {
-  // FILL ME IN !
+  console.log("DELETE /api/repos/" + req.params.id + "TRIGGERED");
+  db.Repo.findByIdAndRemove(req.params.id, function (err, removedRepo){
+    if (err){return console.log("delete error: ", err);}
+    console.log("removed: " +removedRepo.name);
+    res.json(removedRepo);
+  });
 }
 
+//PUT /api/repos/:id
 function update(req, res) {
-  // FILL ME IN !
+  console.log("PUT '/api/repos' TRIGGERED");
+  db.Repo.findOne({_id: req.params.id}, function(err, foundRepo){
+    if (err){return console.log("error: ", err);}
+    console.log('--found repo:',foundRepo.name);
+    if(req.body.name){
+      foundRepo.name = req.body.name;
+    }else {
+      foundRepo.name = "<untitled repo>";
+    }
+    foundRepo.save(function (err, savedRepo){
+      console.log('<-res: repo:', foundRepo.name);
+      res.json(foundRepo.name);
+    });
+  });
 }
 
 
 // export public methods here
 module.exports = {
-  index: index,
   create: create,
   show: show,
   destroy: destroy,
