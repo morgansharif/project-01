@@ -1,35 +1,23 @@
 var db = require('../models');
 
-
-// GET /api/albums
 function index(req, res) {
-    console.log("GET '/api/albums' TRIGGERED");
-    db.Album.find(function (err, albums){
-      if (err){console.log('--error: ', err);}
-      // console.log('--res:',albums);
-      res.json(albums);
-    });
-}
-
-//POST /api/albums  create ONE ALBUM
-function create(req, res) {
-    console.log("POST '/api/albums' TRIGGERED");
-    console.log('--req:', req.body);
-    var newAlbum = new db.Album(req.body);
-    if (newAlbum.genres){
-      // console.log('--genres PASSED');
-      newAlbum.genres = req.body.genres.split(", ");
-      // console.log('updated genres', newAlbum.genres);
-    }
-    newAlbum.save(function(err, album){
-    if (err) {return console.log("save error: " + err);}
-    console.log('--res:',album);
-    res.json(album);
-    });
-}
-
-function show(req, res) {
   // FILL ME IN !
+}
+
+function create(req, res) {
+  // FILL ME IN !
+}
+
+// GET /api/repos/:id/snippets
+function show(req, res) {
+  console.log('GET /api/repos/:id TRIGGERED');
+  console.log('->req: id:', req.params.id);
+  db.Repo.findOne({_id: req.params.id}, function(err, foundRepo){
+    if (err){return console.log("error: ", err);}
+    console.log('--found repo:', (foundRepo || "no repo found"));
+    console.log('<-res: repo:', foundRepo);
+    res.json(foundRepo);
+  });
 }
 
 function destroy(req, res) {
