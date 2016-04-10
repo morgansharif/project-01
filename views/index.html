@@ -66,8 +66,8 @@
           <!-- Collect the nav links, forms, and other content for toggling -->
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
-              <li><a href="#" id="add-snippet">New Snippet</a></li>
               <li>Repo Id: <a id="id-name">{{_id}}</a></li>
+              <li><a href="#" id="new-snippet">New Snippet</a></li>
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Repo Options<span class="caret"></span></a>
                 <ul class="dropdown-menu">
@@ -91,7 +91,7 @@
           <div id={{_id}} class="col-xs-12 col-sm-6 col-md-3 snippet-panel">
           <div class="panel panel-default">
             <div class="panel-heading">
-              <a id="snp-update" href="#" class="btn btn-default btn-xs pull-left" role="button" data-id={{_id}}><i class="glyphicon glyphicon-edit"></i></a>
+              <a href="#" class="btn btn-default btn-xs pull-left snp-update" role="button" data-id={{_id}}><i class="glyphicon glyphicon-edit"></i></a>
 
               <h3 class="panel-title title">{{title}}</h3>
             </div>
