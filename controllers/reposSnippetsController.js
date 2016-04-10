@@ -2,13 +2,11 @@ var db = require('../models');
 
 // POST /api/repos/:id/snippets
 function create(req, res) {
-  console.log("POST /api/repos/"+req.params.id+"/snippets TRIGGERED");
   var newSnippet = new db.Snippet({
     title: "New Snippet",
     desc: "Snippet Description",
     code: "//Your Code Here"
   });
-  console.log('new snippet: ', newSnippet);
   db.Repo.findById(req.params.id, function (err, foundRepo){
     if (err){return console.log("delete error: ", err);}
     foundRepo.snippets.push(newSnippet);
@@ -29,14 +27,10 @@ function destroy(req, res) {
   });
 }
 
-
 function update(req, res) {
-  console.log("PUT '/api/repos/" + req.params.repo_id + "snippets/" + req.params.snippet_id + "' TRIGGERED");
   db.Repo.findOne({_id: req.params.repo_id}, function(err, foundRepo){
     if (err){return console.log("error: ", err);}
-    console.log('--found repo:',foundRepo.name);
     var foundSnippet = foundRepo.snippets.id(req.params.snippet_id);
-    console.log('--found snippet: '+ foundSnippet.title);
     foundSnippet.title = req.body.title;
     foundSnippet.desc = req.body.desc;
     foundSnippet.code = req.body.code;
@@ -46,7 +40,6 @@ function update(req, res) {
     });
   });
 }
-
 
 // export public methods here
 module.exports = {

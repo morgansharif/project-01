@@ -15,10 +15,8 @@ app.use(express.static(__dirname + '/public'));
 //body parser config
 app.use(bodyParser.urlencoded({extended: true}));
 
-// We'll serve jQuery and bootstrap from a local bower cache avoiding CDNs
-// We're placing these under /vendor to differentiate them from our own assets
+//Use Bower and use offline versions of CDNs and make available at '/vendor' directory
 app.use('/vendor', express.static(__dirname + '/bower_components'));
-
 
 //require controllers
 var controllers = require('./controllers');
@@ -30,7 +28,6 @@ var controllers = require('./controllers');
 /*
  * HTML Endpoints
  */
-
 
  app.get('/', function homepage (req, res) {
    res.sendFile(__dirname + '/views/index.html');

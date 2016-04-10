@@ -1,8 +1,5 @@
 // seed.js
-
 var db = require("./models");
-
-
 
 var repoList = [
   {
@@ -39,22 +36,15 @@ var snippetList = [
   }
 ];
 
-
-
-
-
-
+//assemble snippets to each repo in repoList
 repoList.forEach(function(repo) {
   repo.snippets = snippetList;
 });
-console.log("repoList:",repoList);
 
 //clear all existing albums from db
 db.Repo.remove({}, function(err, repos){
   db.Repo.create(repoList, function(err, repos){
     if (err) { return console.log('ERROR', err); }
-    console.log("all repos:", repos);
-    console.log("created", repos.length, "repos");
     process.exit();
   });
 });

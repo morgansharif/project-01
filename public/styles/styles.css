@@ -44,7 +44,7 @@ body{
   background-color: #2D2222;
 }
 
-pre code {
+pre .code {
     overflow-x: normal;
     overflow-y: normal;
     white-space: pre;
