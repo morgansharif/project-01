@@ -4,8 +4,18 @@ function index(req, res) {
   // FILL ME IN !
 }
 
+// POST /api/repos
 function create(req, res) {
-  // FILL ME IN !
+  console.log("POST '/api/repos' TRIGGERED");
+  console.log('->req:', req.body);
+  var repo_name = req.body.name;
+  if (!repo_name){repo_name = "<untitled repo>";}
+  var newRepo = new db.Repo({name: repo_name});
+  newRepo.save(function(err, repo){
+    if (err) {return console.log("save error: " + err);}
+    console.log('--res:',repo);
+    res.json(repo);
+  });
 }
 
 // GET /api/repos/:id/snippets
