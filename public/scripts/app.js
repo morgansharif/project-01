@@ -133,13 +133,12 @@ function updateRepoName(newName){
   $('#repo-name h1').text(currRepo.name);
 }
 
-//updates local snippet info from ajax response and re-renders page
+//updates local snippet list from ajax response and re-renders page
 function updateSnippet(updatedSnippet){
   console.log("updating snippet: " + currRepo.snippets[snippetIndex].title + " with: "+ updatedSnippet);
   currRepo.snippets[snippetIndex] = updatedSnippet;
   renderRepo();
 }
-
 
 //renders currRepo.snippets to handlebars (clears all elements and repopulates)
 function renderRepo(){

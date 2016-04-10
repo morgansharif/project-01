@@ -83,9 +83,10 @@ app.put('/api/repos/:id', function(req, res){
     }else {
       foundRepo.name = "<untitled repo>";
     }
-    foundRepo.save();
-    console.log('<-res: repo:', foundRepo.name);
-    res.json(foundRepo.name);
+    foundRepo.save(function (err, savedRepo){
+      console.log('<-res: repo:', foundRepo.name);
+      res.json(foundRepo.name);
+    });
   });
 });
 
@@ -100,7 +101,18 @@ app.delete('/api/repos/:id', function (req, res){
 });
 
 // POST new snippet
-// app.get('/api/repos/:id/snippets'
+app.post('/api/repos/:id/snippets', function (req, res){
+  console.log("POST /api/repos/:id/snippets" + req.params.id + "TRIGGERED");
+  console.log("req.body: ",req.body);
+  var newSnippet = new Snippet(req.body);
+  db.Repo.findById(req.params.id, function (err, foundRepo){
+    if (err){return console.log("delete error: ", err);}
+    foundRepo.snippets.push(newSnippet);
+    foundRepo.save(function (err, savedRepo) {
+      res.json(newTodo);
+    });
+  });
+});
 // req.params.id
 // req.body (title/desc/code)
 
@@ -110,40 +122,17 @@ app.put('/api/repos/:repo_id/snippets/:snippet_id', function (req, res){
   db.Repo.findOne({_id: req.params.repo_id}, function(err, foundRepo){
     if (err){return console.log("error: ", err);}
     console.log('--found repo:',foundRepo.name);
-    // console.log("snippets: " + foundRepo.snippets);
     var foundSnippet = foundRepo.snippets.id(req.params.snippet_id);
-        console.log('--found snippet: '+ foundSnippet.title);
-        foundSnippet.title = req.body.title;
-        foundSnippet.desc = req.body.desc;
-        foundSnippet.code = req.body.code;
-        foundSnippet.save();
-        console.log('<-res: snippet:', foundSnippet.title);
-        res.json(foundSnippet);
+    console.log('--found snippet: '+ foundSnippet.title);
+    foundSnippet.title = req.body.title;
+    foundSnippet.desc = req.body.desc;
+    foundSnippet.code = req.body.code;
+    foundSnippet.save(function (err, savedSnippet){
+      console.log('<-res: snippet:', foundSnippet.title);
+      res.json(foundSnippet);
+    });
   });
 });
-
-
-// // delete todo embedded in list
-// app.delete('/api/lists/:listId/todos/:id', function (req, res) {
-//   // set the value of the list and todo ids
-//   var listId = req.params.listId;
-//   var todoId = req.params.id;
-//
-//   // find list in db by id
-//   List.findOne({_id: listId}, function (err, foundList) {
-//     // find todo embedded in list
-//     var foundTodo = foundList.todos.id(todoId);
-//     // remove todo
-//     foundTodo.remove();
-//     foundList.save(function (err, savedList) {
-//       res.json(foundTodo);
-//     });
-//   });
-// });//DELETE
-
-
-
-
 
 // delete todo embedded in list
 app.delete('/api/lists/:listId/todos/:id', function (req, res) {

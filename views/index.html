@@ -66,7 +66,7 @@
           <!-- Collect the nav links, forms, and other content for toggling -->
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
-              <li><a id="add-snippet">New Snippet</a></li>
+              <li><a href="#" id="add-snippet">New Snippet</a></li>
               <li>Repo Id: <a id="id-name">{{_id}}</a></li>
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Repo Options<span class="caret"></span></a>
@@ -113,114 +113,93 @@
 
     </div>
 
+  <!-- end visible content -->
 
-
-
-        <!-- <div class ="col-sm-4 col-md-3">
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              <h3 class="panel-title">Repo Title</h3>
-            </div>
-            <div class="panel-body">
-
-              <div class="input-group">
-                <code>
-                  <textarea class="form-control custom-control" rows="13" style="resize:none"></textarea>
-                </code>
-              </div>
+    <!-- RENAME REPO MODAL -->
+    <div id="rn-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+      <div class="modal-dialog modal-md">
+        <div class="modal-content">
+          <div class="modal-header">
+            Edit Repo
           </div>
-        </div> -->
-
-
-
-
-        <!-- RENAME REPO MODAL -->
-        <div id="rn-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
-          <div class="modal-dialog modal-md">
-            <div class="modal-content">
-              <div class="modal-header">
-                Edit Repo
-              </div>
-              <div class="form-group">
-                <label class="col-md-4 control-label">Rename Repo</label>
-                <div class="col-md-4">
-                  <input id="repoInput" name="name" type="text" placeholder="Edit Repo Name" class="form-control input-md" required="">
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                  <button id="saveRepo" type="button" class="btn btn-primary">Save changes</button>
-                </div>
-              </div>
-
+          <div class="form-group">
+            <label class="col-md-4 control-label">Rename Repo</label>
+            <div class="col-md-4">
+              <input id="repoInput" name="name" type="text" placeholder="Edit Repo Name" class="form-control input-md" required="">
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <button id="saveRepo" type="button" class="btn btn-primary">Save changes</button>
             </div>
           </div>
-        </div> <!-- end RENAME REPO MODAL -->
 
-        <!-- DELETE REPO MODAL -->
-        <div id="del-repo-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
-          <div class="modal-dialog modal-md">
-            <div class="modal-content">
-              <div class="modal-header">
-                Delete Repo?
-              </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                  <button id="delete-repo" type="button" class="btn btn-danger">Confirm Delete</button>
-                </div>
+        </div>
+      </div>
+    </div> <!-- end RENAME REPO MODAL -->
 
-            </div>
+    <!-- DELETE REPO MODAL -->
+    <div id="del-repo-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+      <div class="modal-dialog modal-md">
+        <div class="modal-content">
+          <div class="modal-header">
+            Delete Repo?
           </div>
-        </div> <!-- end DELETE REPO MODAL -->
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+            <button id="delete-repo" type="button" class="btn btn-danger">Confirm Delete</button>
+          </div>
 
-        <!-- UPDATE SNIPPET MODAL (PUT) -->
-          <div id="upd-snippet-modal" class="modal fade" tabindex="-1" role="dialog">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
+        </div>
+      </div>
+    </div> <!-- end DELETE REPO MODAL -->
 
-                  <h4 class="modal-title">Update Snippet</h4>
+    <!-- UPDATE SNIPPET MODAL -->
+    <div id="upd-snippet-modal" class="modal fade" tabindex="-1" role="dialog">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+
+            <h4 class="modal-title">Update Snippet</h4>
+          </div>
+          <div class="modal-body">
+            <form id="update-snippet">
+
+              <fieldset class='form-horizontal'>
+                <!-- Text input-->
+                <div class="form-group">
+                  <label class="col-md-4 control-label" for="title">Snippet Name</label>
+                  <div class="col-md-4">
+                    <input id="snippetTitle" name="title" type="text" placeholder="" class="form-control input-md">
+                  </div>
                 </div>
-                <div class="modal-body">
-            <!-- START FORM -->
-                  <form id="update-snippet">
 
-                  <fieldset class='form-horizontal'>
-                    <!-- Text input-->
-                    <div class="form-group">
-                      <label class="col-md-4 control-label" for="title">Snippet Name</label>
-                      <div class="col-md-4">
-                        <input id="snippetTitle" name="title" type="text" placeholder="" class="form-control input-md">
-                      </div>
-                    </div>
-
-                    <!-- Text input-->
-                    <div class="form-group">
-                      <label class="col-md-4 control-label" for="desc">Description</label>
-                      <div class="col-md-4">
-                        <input id="snippetDesc" name="desc" type="text" placeholder="" class="form-control input-md">
-                      </div>
-                    </div>
-
-                    <!-- Text input-->
-                    <div class="form-group">
-                      <label class="col-md-4 control-label" for="code">Code</label>
-                      <div class="col-md-4">
-                        <textarea id="snippetCode" class="form-control input-md" type="text" placeholder="" name="code" wrap="off" cols=40 rows=10></textarea>
-                      </div>
-                    </div>
-
-                  </fieldset>
-                  </form>
-            <!-- END FORM -->
+                <!-- Text input-->
+                <div class="form-group">
+                  <label class="col-md-4 control-label" for="desc">Description</label>
+                  <div class="col-md-4">
+                    <input id="snippetDesc" name="desc" type="text" placeholder="" class="form-control input-md">
+                  </div>
                 </div>
-                <div class="modal-footer">
-                  <button id="delete-snippet" type="button" class="btn btn-danger pull-left">Delete</button>
-                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                  <button id="save-snippet" type="button" class="btn btn-primary">Update</button>
+
+                <!-- Text input-->
+                <div class="form-group">
+                  <label class="col-md-4 control-label" for="code">Code</label>
+                  <div class="col-md-4">
+                    <textarea id="snippetCode" class="form-control input-md" type="text" placeholder="" name="code" wrap="off" cols=40 rows=10></textarea>
+                  </div>
                 </div>
-              </div><!-- /.modal-content -->
-            </div><!-- /.modal-dialog -->
-          </div><!-- end UPDATE SNIPPET MODAL (PUT) -->
+
+              </fieldset>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button id="delete-snippet" type="button" class="btn btn-danger pull-left">Delete</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button id="save-snippet" type="button" class="btn btn-primary">Update</button>
+          </div>
+        </div>
+      </div>
+    </div><!-- end UPDATE SNIPPET MODAL -->
 
   </body>
 
