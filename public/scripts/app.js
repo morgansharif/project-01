@@ -87,6 +87,20 @@ $(function(){
     $('#update-snippet')[0].reset();
   });
 
+  //DELETE snippet -- DELETE /api/repos/:repo_id/snippets/:snippet_id
+  $('#delete-snippet').on('click', function(){
+    console.log('Save snippet link clicked!');
+    console.log("sending: ", $('#update-snippet').serialize());
+    $.ajax({
+      method: 'DELETE',
+      url: "/api/repos/" + currRepo._id + "/snippets/" + currSnippetId,
+      success: deleteSnippet,
+      error: handleError
+    });
+    $('#upd-snippet-modal').modal('hide');
+    $('#update-snippet')[0].reset();
+  });
+
 });// END document on ready
 
 
@@ -142,6 +156,11 @@ function updateSnippet(updatedSnippet){
 
 function addSnippet(newSnippet){
   currRepo.snippets.push(newSnippet);
+  renderRepo();
+}
+
+function deleteSnippet(){
+  currRepo.snippets.splice(snippetIndex, 1);
   renderRepo();
 }
 

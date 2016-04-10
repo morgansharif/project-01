@@ -129,7 +129,7 @@ app.put('/api/repos/:repo_id/snippets/:snippet_id', function (req, res){
     foundSnippet.title = req.body.title;
     foundSnippet.desc = req.body.desc;
     foundSnippet.code = req.body.code;
-    foundSnippet.save(function (err, savedSnippet){
+    foundRepo.save(function (err, savedSnippet){
       console.log('<-res: snippet:', foundSnippet.title);
       res.json(foundSnippet);
     });
@@ -138,9 +138,15 @@ app.put('/api/repos/:repo_id/snippets/:snippet_id', function (req, res){
 
 
 // DELETE existing snippet
-// app.delete('/api/repos/:repo_id/snippets/snippet_id'
-// req.params.id
-
+app.delete('/api/repos/:repo_id/snippets/:snippet_id', function (req, res){
+  db.Repo.findOne({_id: req.params.repo_id}, function(err, foundRepo){
+    if (err){return console.log("error: ", err);}
+    var deletedSnippet = foundRepo.snippets.id(req.params.snippet_id);
+    deletedSnippet.remove();
+    foundRepo.save();
+    res.json(deletedSnippet);
+  });
+});
 
 /**********
 * SERVER *
