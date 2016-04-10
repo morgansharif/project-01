@@ -26,6 +26,7 @@ function show(req, res) {
   });
 }
 
+//DELETE /api/repos/:id
 function destroy(req, res) {
   console.log("DELETE /api/repos/" + req.params.id + "TRIGGERED");
   db.Repo.findByIdAndRemove(req.params.id, function (err, removedRepo){
