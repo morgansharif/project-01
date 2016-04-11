@@ -40,25 +40,25 @@ var controllers = require('./controllers');
 // GET API
 app.get('/api', controllers.api.index);
 
-// GET repo
+// Show Repo
 app.get('/api/repos/:id', controllers.repos.show);
 
-// POST repo
+// Create Repo
 app.post('/api/repos', controllers.repos.create);
 
-// PUT repo name
+// Update Repo
 app.put('/api/repos/:id', controllers.repos.update);
 
-// DELETE repo
+// Destroy Repo
 app.delete('/api/repos/:id', controllers.repos.destroy);
 
-// POST snippet
+// Create Snippet
 app.post('/api/repos/:id/snippets', controllers.reposSnippets.create);
 
-// PUT snippet
+// Update Snippet
 app.put('/api/repos/:repo_id/snippets/:snippet_id', controllers.reposSnippets.update);
 
-// DELETE snippet
+// Destroy Snippet
 app.delete('/api/repos/:repo_id/snippets/:snippet_id', controllers.reposSnippets.destroy);
 
 /**********

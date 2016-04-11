@@ -2,11 +2,15 @@
 
 /* hero window*/
 .container{
-  text-align: center;
+  /*text-align: center;*/
   height: 100vh;
 }
 #hero-page h1{
 }
+h3{
+  text-align: center;
+}
+
 a{
   color: white;
 }
@@ -34,6 +38,7 @@ textarea{
   background-attachment: fixed;
   margin: auto;
   padding-top: 180px;
+  text-align: center;
 }
 /* end hero window */
 .hidden{
@@ -44,7 +49,7 @@ body{
   background-color: #2D2222;
 }
 
-pre .code {
+pre code {
     overflow-x: normal;
     overflow-y: normal;
     white-space: pre;

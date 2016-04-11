@@ -11,13 +11,20 @@
     <link rel="stylesheet" href="vendor/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="styles/styles.css">
 
+    <link rel="stylesheet" href="/vendor/highlightjs/styles/default.css">
+
+
     <!-- VENDOR SCRIPTS -->
     <script src="vendor/jQuery/dist/jquery.min.js"></script>
     <script src="vendor/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="vendor/handlebars/handlebars.min.js"></script>
 
+    <script src="vendor/highlightjs/highlight.pack.min.js"></script>
+
+
     <!-- APPLICATION SCRIPTS -->
     <script src="scripts/app.js"></script>
+
 
   </head>
   <body>
@@ -96,7 +103,7 @@
               <h3 class="panel-title title">{{title}}</h3>
             </div>
             <div class="panel-body">
-              <pre class="pre-scrollable code"><code>{{code}}</code></pre>
+              <pre><code>{{code}}</code></pre>
               <p class="desc">
                 {{desc}}
               </p>

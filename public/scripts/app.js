@@ -1,13 +1,11 @@
+var currRepo = {};  //current repo
+var source;         //source tag id for snippet template
+var template;       //handlebars compiler
+var currSnippetId;  //_id of current snippet to edit/delete
+var snippetIndex;   //index of current snippet in document and currRepo.snippets
 
-var currRepo = {};
-var source;
-var template;
-var currSnippetId;
-var snippetIndex;
-
-//document on ready
+//BEGIN document.ready
 $(function(){
-  console.log('app.js loaded');
 
   //store handlebars Snippet template
   source = $('#repo-template').html();
@@ -15,8 +13,6 @@ $(function(){
 
   //Repo Login Submit
   $('#login-btn').on('click', function(){
-    // console.log('clicked submit: ', $(this).serialize());
-    console.log('REPO LOGIN BTN Clicked! with:'+ $("#repo-login").val() );
       $.ajax({
       method: 'GET',
       url: '/api/repos/'+ $("#repo-login").val(),
@@ -25,7 +21,6 @@ $(function(){
   });
 
   $('#new-repo-lnk').on('click', function(){
-    console.log('new repo link clicked!');
     $(".jumbotron div.hidden").removeClass("hidden");
     $("#new-repo-lnk").addClass("hidden");
     });
@@ -33,9 +28,6 @@ $(function(){
 
   //Create New Repo
   $('#new-repo-btn').on('click', function(){
-    // console.log('clicked submit: ', $(this).serialize());
-    console.log('CREATE NEW REPO BTN Clicked! with:'+ $("#new-repo-btn").val());
-    console.log('sending: ' + $("#repo-create").serialize());
       $.ajax({
       method: 'POST',
       url: '/api/repos',
@@ -48,8 +40,6 @@ $(function(){
   //Modal Buttons
   //RENAME Repo -- PUT /api/repos/:id
   $('#saveRepo').on('click', function(){
-    console.log('post new repo name link clicked!');
-    console.log("sending: "+ $('#repoInput').val());
     $.ajax({
       method: 'PUT',
       url: '/api/repos/' + currRepo._id,
@@ -58,11 +48,10 @@ $(function(){
       error: handleError
     });
     $('#rn-modal').modal('hide');
-    });
+  });
 
   //DELETE Repo -- DELETE /api/repos/:id
   $('#delete-repo').on('click', function(){
-    console.log('post new repo name link clicked!');
     $.ajax({
       method: 'DELETE',
       url: '/api/repos/' + currRepo._id,
@@ -74,8 +63,6 @@ $(function(){
 
   //form is update-snippet
   $('#save-snippet').on('click', function(){
-    console.log('Save snippet link clicked!');
-    console.log("sending: ", $('#update-snippet').serialize());
     $.ajax({
       method: 'PUT',
       url: "/api/repos/" + currRepo._id + "/snippets/" + currSnippetId,
@@ -83,30 +70,25 @@ $(function(){
       data: $('#update-snippet').serialize(),
       error: handleError
     });
+    //hide modal and clear form
     $('#upd-snippet-modal').modal('hide');
     $('#update-snippet')[0].reset();
   });
 
   //DELETE snippet -- DELETE /api/repos/:repo_id/snippets/:snippet_id
   $('#delete-snippet').on('click', function(){
-    console.log('Save snippet link clicked!');
-    console.log("sending: ", $('#update-snippet').serialize());
     $.ajax({
       method: 'DELETE',
       url: "/api/repos/" + currRepo._id + "/snippets/" + currSnippetId,
       success: deleteSnippet,
       error: handleError
     });
+    //hide modal and clear form
     $('#upd-snippet-modal').modal('hide');
     $('#update-snippet')[0].reset();
   });
 
-});// END document on ready
-
-
-
-
-
+});// END document.ready
 
 function handleError(err){
   console.log("Error: " + err);
@@ -118,7 +100,6 @@ function firstGet(repo){
   // updateRepoName(repo.name);
   $('#id-name').text("Repo ID: "+ currRepo._id);
   currRepo.snippets = repo.snippets;
-  console.log("snippets:", repo.snippets);
   renderRepo();
   togglePages();
 }
@@ -131,11 +112,9 @@ function logout(){
 // Toggles visibility of repo and hero pages
 function togglePages(){
   if($("#hero-page").hasClass("hidden")){
-    console.log("hero ON && repo OFF");
     $("#hero-page").removeClass("hidden");
     $("#repo-page").addClass("hidden");
   }else{
-    console.log("hero OFF && repo ON");
     $("#hero-page").addClass("hidden");
     $("#repo-page").removeClass("hidden");
   }
@@ -149,7 +128,6 @@ function updateRepoName(newName){
 
 //updates local snippet list from ajax response and re-renders page
 function updateSnippet(updatedSnippet){
-  console.log("updating snippet: " + currRepo.snippets[snippetIndex].title + " with: "+ updatedSnippet);
   currRepo.snippets[snippetIndex] = updatedSnippet;
   renderRepo();
 }
@@ -166,33 +144,31 @@ function deleteSnippet(){
 
 //renders currRepo.snippets to handlebars (clears all elements and repopulates)
 function renderRepo(){
-  console.log("**now rendering snippets**");
   $("#repo-page").empty();
   var snippetHtml = template(currRepo);
   $("#repo-page").prepend(snippetHtml);
 
+  //Initialize Highlight.js (syntax highlighting)
+  $('pre code').each(function(i, e) {
+    hljs.highlightBlock(e);
+  });
+
   //REPO PAGE EVENT LISTENERS
-  //dropdown menu listeners:
+  //Header menu listeners:
   $('#edit-repo-name').on('click', function editRepoName(){
-    console.log('RENAME repo link clicked!');
     $('#rn-modal').modal('show');
   });
 
   $('#logout').on('click', function logout(){
-    console.log('LOGOUT link clicked!');
     togglePages();
     $("#repo-page").empty();
   });
 
   $('#del-repo').on('click', function del(){
-    console.log('DELETE repo link clicked!');
     $('#del-repo-modal').modal('show');
   });
 
-
-////////////////////////////////////////////////////////////////////////////////
   $('#new-snippet').on('click', function del(){
-    console.log('NEW snippet link clicked!');
     $.ajax({
     method: 'POST',
     url: '/api/repos/' + currRepo._id + '/snippets',
@@ -201,14 +177,12 @@ function renderRepo(){
   });
 });
 
-  //update snippet
+  //Update snippet edit button clicked
   $('a.snp-update').on('click', function updateSnippet(){
-    console.log('UPDATE snippet link clicked!');
     //pull uniqe _id from button
     currSnippetId = $(this).data('id');
-    // get index val of panel (to pull data from local repo.snippets[index])
+    // get index of current panel
     snippetIndex = $( '#'+currSnippetId ).index(".snippet-panel");
-    console.log("snippet index =: "+ snippetIndex);
     //populate modal fields from repo.snippets[index]
     var currSnippet = currRepo.snippets[snippetIndex];
     $("#snippetTitle").attr("value", currSnippet.title);

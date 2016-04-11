@@ -17,6 +17,7 @@
   "dependencies": {
     "jquery": "^2.2.3",
     "handlebars": "^4.0.5",
-    "bootstrap": "^3.3.6"
+    "bootstrap": "^3.3.6",
+    "highlightjs": "^9.2.0"
   }
 }

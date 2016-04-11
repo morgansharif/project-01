@@ -45,6 +45,7 @@ repoList.forEach(function(repo) {
 db.Repo.remove({}, function(err, repos){
   db.Repo.create(repoList, function(err, repos){
     if (err) { return console.log('ERROR', err); }
+    console.log(repos);
     process.exit();
   });
 });

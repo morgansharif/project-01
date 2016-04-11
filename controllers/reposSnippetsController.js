@@ -35,7 +35,6 @@ function update(req, res) {
     foundSnippet.desc = req.body.desc;
     foundSnippet.code = req.body.code;
     foundRepo.save(function (err, savedSnippet){
-      console.log('<-res: snippet:', foundSnippet.title);
       res.json(foundSnippet);
     });
   });
