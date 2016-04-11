@@ -5,21 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-    <title>Project-01</title>
+    <title>Snippets!</title>
 
     <!-- STYLESHEETS -->
     <link rel="stylesheet" href="vendor/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="styles/styles.css">
     <link rel="stylesheet" href="/vendor/highlightjs/styles/agate.css">
 
-
     <!-- VENDOR SCRIPTS -->
     <script src="vendor/jquery/dist/jquery.min.js"></script>
     <script src="vendor/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="vendor/handlebars/handlebars.min.js"></script>
-
     <script src="vendor/highlightjs/highlight.pack.min.js"></script>
-
 
     <!-- APPLICATION SCRIPTS -->
     <script src="scripts/app.js"></script>
@@ -94,8 +91,8 @@
 
           <!-- one snippet -->
         {{#each snippets}}
-          <div id={{_id}} class="col-xs-12 col-sm-6 col-md-3 snippet-panel">
-          <div class="panel panel-default">
+        <!-- col-xs-12 col-sm-6 col-md-3 -->
+          <div id={{_id}} class=" panel panel-default snippet-panel">
             <div class="panel-heading">
               <a href="#" class="btn btn-default btn-xs pull-left snp-update" role="button" data-id={{_id}}><i class="glyphicon glyphicon-edit"></i></a>
 
@@ -109,7 +106,6 @@
             </div>
 
             </div>
-          </div>
         {{/each}}
         </script>
 

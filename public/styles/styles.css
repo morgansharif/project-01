@@ -1,12 +1,5 @@
 /*   CSS STYLES   */
 
-/* hero window*/
-.container{
-  /*text-align: center;*/
-  height: 100vh;
-}
-#hero-page h1{
-}
 h3{
   text-align: center;
 }
@@ -39,6 +32,7 @@ textarea{
   margin: auto;
   padding-top: 180px;
   text-align: center;
+  height: 100vh;
 }
 /* end hero window */
 .hidden{
@@ -49,16 +43,16 @@ body{
   background-color: #2D2222;
 }
 
-
-
 pre code {
-    overflow-x: normal;
-    overflow-y: normal;
-    white-space: pre;
-    text-align: left;
+  height: auto;
+  overflow-x: auto;
+  /*overflow-y: auto;*/
+  white-space: pre;
+  text-align: left;
 }
 
 pre{
+  max-height: 200px;
   background-color: #515151;
 }
 
@@ -67,4 +61,11 @@ nav{
   padding-left: 15px;
   color: #D46A6A;
   height: 100px;
+}
+
+.hljs{
+  background: initial;
+  display: initial;
+  overflow-x: initial;
+  /*padding: initial;*/
 }
