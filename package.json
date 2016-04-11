@@ -5,6 +5,7 @@
   "main": "server.js",
   "dependencies": {
     "body-parser": "^1.15.0",
+    "bower": "^1.7.9",
     "express": "^4.13.4",
     "mongoose": "^4.4.11"
   },
@@ -12,6 +13,6 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author":     "Morgan Sharif <morgan.sharif@gmail.com",
+  "author": "Morgan Sharif <morgan.sharif@gmail.com",
   "license": "ISC"
 }
