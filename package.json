@@ -13,9 +13,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },"scripts": {
-    "postinstall": "./node_modules/bower/bin/bower install"
+    "postinstall": "bower install"
   },
-  "author": "Morgan Sharif <morgan.sharif@gmail.com",
+  "author": "Morgan Sharif <morgan.sharif@gmail.com>",
   "license": "ISC"
 
 }
