@@ -1,8 +1,8 @@
 function index(req, res) {
   res.json({
     message: "Welcome to my project-01!",
-    // documentation_url: "github readme",
-    // base_url: "http://tunely.herokuapp.com",
+    // documentation_url: "https://github.com/morgansharif/project-01/blob/master/README.md",
+    // base_url: "https://floating-thicket-55818.herokuapp.com/",
     endpoints: [
       {method: "GET",     path: "/api", description: "Describes available endpoints"},
       {method: "GET",     path: "/api/repos/:id", description: "Returns a specific Repo by ID."},
