@@ -11,6 +11,7 @@
 * CSS3
 * JavaScript
 * jQuery
+* AJAX
 * Bootstrap 3
 * Handlebars.js
 * Highlight.js *(syntax highlighting)*
