@@ -1,71 +1,107 @@
 /*   CSS STYLES   */
 
-h3{
-  text-align: center;
-}
+/*              /-------COLOR PALETTE-------\
+#130404 #333333 #9D9D9D #F9F9F9 #555566 #444444 #998877 #CC6611
+*/
 
-a{
-  color: white;
-}
-a:hover{
-  color: white;
-}
-repo-name-input{
-  width:100px;
-  height: 40px
-  font-size:36px;
-}
+/*****************GLOBAL*****************/
+  a{
+    color: #F9F9F9;
+  }
+  a:hover{
+    color: #F9F9F9;
+  }
+  h3{
+    text-align: center;
+  }
+  body{
+    background-color: #333333;
+  }
+  .hidden{
+    visibility: hidden;
+    display: none;
+  }
 
-textarea{
-  font-family: monospace;
-  wrap: off;
-}
+/***************HERO PAGE***************/
+  .jumbotron{
+    text-shadow: 1px 1px 2px #130404;
+    color: #F9F9F9;
+    padding: 0px 0px;
+    background-color: #130404;
+    background-image: url(https://aaronbartholomew.com/wp-content/uploads/2014/03/clean-code.jpg);
+    background-position: center;
+    margin: auto;
+    padding-top: 180px;
+    text-align: center;
+    height: 100vh;
+  }
+  .hero-input{
+    padding: 15px;
+  }
 
-.jumbotron{
-  text-shadow: 1px 1px 2px black;
-  color: white;
-  padding: 0px 0px;
-  background-color: black;
-  background-image: url(http://aaronbartholomew.com/wp-content/uploads/2014/03/clean-code.jpg);
-  background-position: center;
-  background-attachment: fixed;
-  margin: auto;
-  padding-top: 180px;
-  text-align: center;
-  height: 100vh;
-}
-/* end hero window */
-.hidden{
-  visibility: hidden;
-  display: none;
-}
-body{
-  background-color: #2D2222;
-}
+/***************REPO PAGE***************/
 
-pre code {
-  height: auto;
-  overflow-x: auto;
-  /*overflow-y: auto;*/
-  white-space: pre;
-  text-align: left;
-}
+  /**********REPO NAV**********/
+    a#repo-name{
+      font-size: 25px;
+    }
+    .navbar-collapse{
+      padding-left: 15px;
+      max-width: auto;
+    }
+    .snippets-main{
+      margin-top: 75px;
+    }
+    #header-nav{
+      padding-top: 0px;
+    }
 
-pre{
-  max-height: 200px;
-  background-color: #515151;
-}
+    #repo-name{
+      color: #cc6611;
+    }
 
-nav{
-  padding-top: 10px;
-  padding-left: 15px;
-  color: #D46A6A;
-  height: 100px;
-}
+  /****SNIPPETS PANELS****/
+    .snp-update{
+      background-color: #F9F9F9;
+      color: #CC6611;
+    }
+    .snp-update:hover{
+      border-color: #515151;
+      background-color: #CC6611;
+      color: #F9F9F9;
+    }
+    pre{
+      max-height: 200px;
+      background-color: #515151;
+    }
+    pre code {
+      height: auto;
+      overflow-x: auto;
+      white-space: pre;
+      text-align: left;
+    }
+    .hljs{
+      background: initial;
+      display: initial;
+      overflow-x: initial;
+    }
 
-.hljs{
-  background: initial;
-  display: initial;
-  overflow-x: initial;
-  /*padding: initial;*/
-}
+/*************MODAL WINDOWS*************/
+  .modal-title{
+    color: #CC6611;
+  }
+  .modal-header{
+    color: #CC6611;
+  }
+  .modal-content{
+    background-color: #444444;
+    color: #F9F9F9;
+  }
+  div.rename-repo{
+    padding-bottom: 15px;
+    padding-top: 15px;
+  }
+  textarea{
+    font-family: monospace;
+    wrap: off;
+  }

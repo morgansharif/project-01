@@ -123,7 +123,7 @@ function togglePages(){
 // Updates the header of the repo nav bar
 function updateRepoName(newName){
   currRepo.name = newName;
-  $('#repo-name h1').text(currRepo.name);
+  $('#repo-name').text(currRepo.name);
 }
 
 //updates local snippet list from ajax response and re-renders page
@@ -133,7 +133,7 @@ function updateSnippet(updatedSnippet){
 }
 
 function addSnippet(newSnippet){
-  currRepo.snippets.push(newSnippet);
+  currRepo.snippets.unshift(newSnippet);
   renderRepo();
 }
 

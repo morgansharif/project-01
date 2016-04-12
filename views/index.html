@@ -29,24 +29,27 @@
       <div class="container">
         <h1>Snippets</h1><br />
         <!-- start input-group -->
-        <div class="col-sm-6 col-sm-offset-3">
-          <div class="input-group">
-            <input id="repo-login" type="text" class="form-control" placeholder="Enter your Repo ID!">
-            <span class="input-group-btn">
-              <button id="login-btn" class="btn btn-default" type="button">Go To Repo</button>
-            </span>
+        <div class="row hero-input">
+          <div class="col-sm-6 col-sm-offset-3">
+            <div class="input-group">
+              <input id="repo-login" type="text" class="form-control" placeholder="Enter your Repo ID!">
+              <span class="input-group-btn">
+                <button id="login-btn" class="btn btn-default" type="button">Go To Repo</button>
+              </span>
+            </div>
           </div>
         </div>
-        <br /><br /><br />
-        <div id="new-repo-lnk">
-        <h4><a href="#">Dont have a Repo?</a></h4>
-        </div>
-        <div class="col-sm-6 col-sm-offset-3 hidden">
-          <div class="input-group">
-            <input id="repo-create" name="name" type="text" class="form-control" placeholder="Name your new repo!">
-            <span class="input-group-btn">
-              <button id="new-repo-btn" class="btn btn-default" type="button">New Repo</button>
-            </span>
+        <div class="row hero-input">
+          <div id="new-repo-lnk">
+            <h4><a href="#">Dont have a Repo?</a></h4>
+          </div>
+          <div class="col-sm-6 col-sm-offset-3 hidden">
+            <div class="input-group">
+              <input id="repo-create" name="name" type="text" class="form-control" placeholder="Name your new repo!">
+              <span class="input-group-btn">
+                <button id="new-repo-btn" class="btn btn-default" type="button">New Repo</button>
+              </span>
+            </div>
           </div>
         </div>
         <!-- /input-group -->
@@ -59,34 +62,42 @@
     <!--     START REPO PAGE      -->
     <div id="repo-page" class="hidden page">
       <script id="repo-template" type="text/x-handlebars-template">
-      <nav class="navbar navbar-inverse">
-        <div class="container-fluid">
-          <!-- Brand and toggle get grouped for better mobile display -->
-          <div class="navbar-header">
-            <a id="repo-name" class="navbar-brand" href="#"><h1>{{name}}</h1></a>
-          </div>
+      <div class="header-nav">
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+          <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a id="repo-name" class="navbar-brand navbar-left" href="#">{{name}}</a>
+            </div>
 
-          <!-- Collect the nav links, forms, and other content for toggling -->
-          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav navbar-right">
-              <li>Repo Id: <a id="id-name">{{_id}}</a></li>
-              <li><a href="#" id="new-snippet">New Snippet</a></li>
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Repo Options<span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                  <li><a id="edit-repo-name" href="#">Edit Repo Name</a></li>
-                  <li><a id="logout" href="#">Logout</a></li>
-                  <li role="separator" class="divider"></li>
-                  <li><a id="del-repo" href="#">Delete Repo</a></li>
-                </ul>
-              </li>
-            </ul>
-          </div><!-- /.navbar-collapse -->
-        </div><!-- /.container-fluid -->
-      </nav>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+              <ul class="nav navbar-nav navbar-right">
+                <li><a id="id-name">Repo Id: {{_id}}</a></li>
+                <li><a href="#" id="new-snippet">New Snippet</a></li>
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Options<span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a id="edit-repo-name" href="#">Edit Repo Name</a></li>
+                    <li><a id="logout" href="#">Logout</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a id="del-repo" href="#">Delete Repo</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </div><!-- /.navbar-collapse -->
+          </div><!-- /.container-fluid -->
+        </nav>
+      </div>
 
 
-      <div class="container">
+      <div class="container snippets-main">
         <div class="row">
 
           <!-- one snippet -->
@@ -121,12 +132,9 @@
     <div id="rn-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
       <div class="modal-dialog modal-md">
         <div class="modal-content">
-          <div class="modal-header">
-            Edit Repo
-          </div>
+          <div class="modal-header"><h4 class="modal-title">Rename Repo</h4></div>
           <div class="form-group">
-            <label class="col-md-4 control-label">Rename Repo</label>
-            <div class="col-md-4">
+            <div class="col-md-4 rename-repo">
               <input id="repoInput" name="name" type="text" placeholder="Edit Repo Name" class="form-control input-md" required="">
             </div>
             <div class="modal-footer">
@@ -144,7 +152,7 @@
       <div class="modal-dialog modal-md">
         <div class="modal-content">
           <div class="modal-header">
-            Delete Repo?
+            <h4 class="modal-title">Delete Repo?</h4>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
@@ -160,14 +168,12 @@
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-
             <h4 class="modal-title">Update Snippet</h4>
           </div>
           <div class="modal-body">
             <form id="update-snippet">
-
               <fieldset class='form-horizontal'>
-                <!-- Text input-->
+                <!-- Snippet Name input-->
                 <div class="form-group">
                   <label class="col-md-4 control-label" for="title">Snippet Name</label>
                   <div class="col-md-4">
@@ -175,7 +181,7 @@
                   </div>
                 </div>
 
-                <!-- Text input-->
+                <!-- Description input-->
                 <div class="form-group">
                   <label class="col-md-4 control-label" for="desc">Description</label>
                   <div class="col-md-4">
@@ -183,7 +189,7 @@
                   </div>
                 </div>
 
-                <!-- Text input-->
+                <!-- Code input-->
                 <div class="form-group">
                   <label class="col-md-4 control-label" for="code">Code</label>
                   <div class="col-md-4">
