@@ -26,7 +26,7 @@ $(function(){
     });
 
 
-  //Create New Repo
+  //CREATE New Repo
   $('#new-repo-btn').on('click', function(){
       $.ajax({
       method: 'POST',
@@ -37,8 +37,8 @@ $(function(){
     });
   });
 
-  //Modal Buttons
-  //RENAME Repo -- PUT /api/repos/:id
+  //----------Modal Buttons----------
+  //UPDATE Repo -- PUT /api/repos/:id
   $('#saveRepo').on('click', function(){
     $.ajax({
       method: 'PUT',
@@ -50,7 +50,7 @@ $(function(){
     $('#rn-modal').modal('hide');
   });
 
-  //DELETE Repo -- DELETE /api/repos/:id
+  //DELETE Repo
   $('#delete-repo').on('click', function(){
     $.ajax({
       method: 'DELETE',
@@ -61,7 +61,7 @@ $(function(){
     $('#del-repo-modal').modal('hide');
   });
 
-  //form is update-snippet
+  //UPDATE Snippet
   $('#save-snippet').on('click', function(){
     $.ajax({
       method: 'PUT',
@@ -75,7 +75,7 @@ $(function(){
     $('#update-snippet')[0].reset();
   });
 
-  //DELETE snippet -- DELETE /api/repos/:repo_id/snippets/:snippet_id
+  //DELETE snippet
   $('#delete-snippet').on('click', function(){
     $.ajax({
       method: 'DELETE',
@@ -97,7 +97,6 @@ function handleError(err){
 // Handles first GET request to populate page and global variables for this repo
 function firstGet(repo){
   currRepo = repo;
-  // updateRepoName(repo.name);
   $('#id-name').text("Repo ID: "+ currRepo._id);
   currRepo.snippets = repo.snippets;
   renderRepo();
