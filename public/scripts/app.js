@@ -180,7 +180,7 @@ function renderRepo(){
   $('a.snp-update').on('click', function updateSnippet(){
     //pull uniqe _id from button
     currSnippetId = $(this).data('id');
-    // get index of current panel
+    // get index of current panel from matching snippet _id assigned as an ID
     snippetIndex = $( '#'+currSnippetId ).index(".snippet-panel");
     //populate modal fields from repo.snippets[index]
     var currSnippet = currRepo.snippets[snippetIndex];
